@@ -1,15 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Header />
+  <ResInputs />
+  <ProdDataInput />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header'
+import ResInputs from './components/ResInputs'
+import ProdDataInput from './components/ProdDataInput'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    ResInputs,
+    ProdDataInput
   }
 }
 </script>
