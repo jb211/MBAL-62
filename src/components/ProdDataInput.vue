@@ -4,7 +4,7 @@
      <p>Use the format [Date, Pressure (psia), Production (mscf)]. Please paste without the column headers.</p>  
         <textarea v-model="ProdDataRaw" name="prod-data" style="width:250px;height:150px;"></textarea><br>
         <button class="btn btn-primary mr-1" v-on:click="generateJSON">Update Production Data</button>
-        <button class="btn btn-primary" v-on:click="generatePZPlot">Generate P/Z Plot + Results</button>
+        <button class="btn btn-primary" v-on:click="generatePZPlot">Generate MBAL Plots + Results</button>
         <ResultsTab 
             :pressureData="ResultsData.pressureData" 
             :productionData="ResultsData.productionData" 

@@ -197,7 +197,7 @@ export default {
                 },
               },
               title: {
-                text: 'F vs. Eg'
+                text: 'F (MB withdrawal term)'
               },
             },
               xaxis: {
@@ -207,7 +207,7 @@ export default {
                 },
               },
               title: {
-                text: 'Eg'
+                text: 'Eg (expansivity)'
               }
             }
           },
