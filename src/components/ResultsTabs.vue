@@ -9,6 +9,11 @@
     <div class="col-lg">
         <apexchart ref="pzChart" width="500" :options="pzChartOptions" :series="pzSeries"></apexchart> 
         <p>OGIP Estimate from P/Z plot is {{ pzOGIP }} MMscf</p>
+        <br>
+        <br>
+        <br>
+        <apexchart ref="feChart" width="500" :options="feChartOptions" :series="feSeries"></apexchart> 
+         <p>OGIP Estimate from F vs. E plot is {{ feOGIP }} MMscf</p>
     </div>
     
 </div>
@@ -26,7 +31,7 @@ export default {
     components: {
       'apexchart': VueApexCharts
     },
-    props: ['pressureData', 'productionData', 'pzData','pzRegress', 'pzOGIP'],
+    props: ['pressureData', 'productionData', 'pzData','pzRegress', 'pzOGIP', 'feData', 'feRegress', 'feOGIP'],
     watch: {
         pressureData(newValue) {
             this.pressSeries = [{name: "Pressure", data: newValue}]
@@ -36,6 +41,9 @@ export default {
         },
         pzData(newValue) {
             this.pzSeries = [{name: "PZ_scatter", data: newValue}]
+        },
+        feData(newValue) {
+            this.feSeries = [{name: "FE_scatter", data: newValue}]
         },
     },
     data() { return {
@@ -163,7 +171,46 @@ export default {
                 text: 'Cumulative Production (mscf)'
               }
             }
-          }
+          },
+          feSeries: [{name: "fe_scatter",
+                      type: "scatter",
+                      data: this.feData}],
+          feChartOptions: {
+            chart: {
+              height: 350,
+              type: 'scatter',
+            },
+            title: {
+              text: 'F vs. Eg Plot',
+              align: 'left'
+            },
+            markers: {
+              size: [6, 0]
+            },
+            legend: {
+              show: false
+            },
+            yaxis: {
+              labels: {
+                formatter: function (val) {
+                  return (val / 1).toFixed(0);
+                },
+              },
+              title: {
+                text: 'F vs. Eg'
+              },
+            },
+              xaxis: {
+              labels: {
+                formatter: function (val) {
+                  return (val * 1000).toFixed(0);
+                },
+              },
+              title: {
+                text: 'Eg'
+              }
+            }
+          },
         }
     },
     methods: { checkData : function () {
