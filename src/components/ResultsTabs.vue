@@ -7,12 +7,12 @@
         <apexchart ref="prodChart" width="500" type="line" :options="prodChartOptions" :series="prodSeries"></apexchart>
     </div>
     <div class="col-lg">
-        <apexchart ref="pzChart" width="500" :options="pzChartOptions" :series="pzSeries"></apexchart> 
+        <apexchart ref="pzChart" width="500" :type="line" :options="pzChartOptions" :series="pzSeries"></apexchart> 
         <p>OGIP Estimate from P/Z plot is {{ pzOGIP }} MMscf</p>
         <br>
         <br>
         <br>
-        <apexchart ref="feChart" width="500" :options="feChartOptions" :series="feSeries"></apexchart> 
+        <apexchart ref="feChart" width="500" :type="line" :options="feChartOptions" :series="feSeries"></apexchart> 
          <p>OGIP Estimate from F vs. E plot is {{ feOGIP }} MMscf</p>
     </div>
     
@@ -31,7 +31,7 @@ export default {
     components: {
       'apexchart': VueApexCharts
     },
-    props: ['pressureData', 'productionData', 'pzData','pzRegress', 'pzOGIP', 'feData', 'feRegress', 'feOGIP'],
+    props: ['pressureData', 'productionData', 'pzData','pzRegress', 'pzOGIP', 'feData', 'feRegress', 'feOGIP', 'pzLine', 'feLine'],
     watch: {
         pressureData(newValue) {
             this.pressSeries = [{name: "Pressure", data: newValue}]
@@ -40,10 +40,39 @@ export default {
             this.prodSeries = [{name: "Production", data: newValue}]
         },
         pzData(newValue) {
-            this.pzSeries = [{name: "PZ_scatter", data: newValue}]
+            this.pzSeries = [{name: "PZ_scatter",
+                      type: "scatter",
+                      data: newValue},
+                      {name: "PZ_line",
+                      type: "line",
+                      data: this.pzLine}]
+            console.log(this.pzSeries)
+        },
+        pzLine(newValue) {
+            this.pzSeries = [{name: "PZ_scatter",
+                      type: "scatter",
+                      data: this.pzData},
+                      {name: "PZ_line",
+                      type: "line",
+                      data: newValue}]
         },
         feData(newValue) {
-            this.feSeries = [{name: "FE_scatter", data: newValue}]
+            this.feSeries = [{name: "fe_scatter",
+                      type: "scatter",
+                      data: newValue},
+                      {name: "fe_line",
+                      type: "line",
+                      data: this.feLine},
+                      ]
+        },
+        feLine(newValue) {
+            this.feSeries = [{name: "fe_scatter",
+                      type: "scatter",
+                      data: this.feData},
+                      {name: "fe_line",
+                      type: "line",
+                      data: newValue},
+                      ]
         },
     },
     data() { return {
@@ -135,11 +164,14 @@ export default {
           },
           pzSeries: [{name: "PZ_scatter",
                       type: "scatter",
-                      data: this.pzData}],
+                      data: this.pzData},
+                      {name: "PZ_line",
+                      type: "line",
+                      data: this.pzLine}],
           pzChartOptions: {
             chart: {
               height: 350,
-              type: 'scatter',
+              type: 'line',
             },
             title: {
               text: 'P/Z Plot',
@@ -174,11 +206,15 @@ export default {
           },
           feSeries: [{name: "fe_scatter",
                       type: "scatter",
-                      data: this.feData}],
+                      data: this.feData},
+                      {name: "fe_line",
+                      type: "line",
+                      data: this.feLine},
+                      ],
           feChartOptions: {
             chart: {
               height: 350,
-              type: 'scatter',
+              type: 'line',
             },
             title: {
               text: 'F vs. Eg Plot',
