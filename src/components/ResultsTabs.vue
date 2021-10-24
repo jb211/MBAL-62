@@ -196,13 +196,14 @@ export default {
               },
             },
               xaxis: {
+              tickAmount: 20,
               labels: {
                 formatter: function (val) {
-                  return (val / 1).toFixed(0);
+                  return (val / 1000).toFixed(0);
                 },
               },
               title: {
-                text: 'Cumulative Production (mscf)'
+                text: 'Cumulative Production (MMscf)'
               }
             }
           },
@@ -231,21 +232,22 @@ export default {
             yaxis: {
               labels: {
                 formatter: function (val) {
-                  return (val / 1).toFixed(0);
+                  return (val / 1000).toFixed(0);
                 },
               },
               title: {
-                text: 'F (MB withdrawal term)'
+                text: 'F (MB withdrawal term) [MMscf]'
               },
             },
               xaxis: {
+              tickAmount: 10,
               labels: {
                 formatter: function (val) {
-                  return (val * 1000).toFixed(0);
+                  return (val / 1).toFixed(3);
                 },
               },
               title: {
-                text: 'Eg (expansivity)'
+                text: 'Eg [cf/scf]'
               }
             }
           },
