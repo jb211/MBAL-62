@@ -100,6 +100,7 @@ export default {
               text: 'Pressure Profile',
               align: 'left'
             },
+            xaxis: {type: 'datetime'},
             yaxis: {
               labels: {
                 formatter: function (val) {
@@ -143,6 +144,7 @@ export default {
               text: 'Production Profile',
               align: 'left'
             },
+            xaxis: {type: 'datetime'},
             yaxis: {
               labels: {
                 formatter: function (val) {

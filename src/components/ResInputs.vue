@@ -20,7 +20,7 @@ export default {
     name: 'ResInputs',
     data() { return {
         ResDesc: 'Field A',
-        ResTemp: 343,
+        ResTemp: 536.67,
         ResFluidGrav: 0.66
     }
 

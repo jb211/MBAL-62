@@ -59,6 +59,7 @@ export default {
                 var production_data = result.map( (e) => {return {x: e.Date, y: e.Production}})
                 this.ResultsData.pressureData = pressure_data
                 this.ResultsData.productionData = production_data
+                console.log(this.ResultsData.productionData)
                 return result
             
         },
@@ -76,14 +77,13 @@ export default {
                 const requestOptions = {
                     method: "POST",
                     headers: { "Content-Type": 'application/json' },
-                    body: JSON.stringify({ "resTemp":343,
+                    body: JSON.stringify({ "resTemp": 536.67,
                             "resGrav": 0.66,
                             "resData": result})
                 };
                 const resp = await fetch("https://o03x5atg21.execute-api.us-east-1.amazonaws.com/default/gas_MBAL_calculations", requestOptions)
                 var res = await resp.json()
                 var bod = JSON.parse(res["body"])
-                console.log(bod)
                 var pz_plot_data = bod.data_set.map( (e) => {return {x: parseFloat(e["Production (mmscf)"]), y: e["P/Z"]}})
                 
                 var fe_plot_data = bod.data_set.map( (e) => {return {x: e["Eg"], y: e["Bg"] * parseFloat(e["Production (mmscf)"]) }})
