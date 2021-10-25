@@ -1,24 +1,3 @@
 # mbal-62
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Basic analytics for dry gas field production data: https://main.dpvt5n9fbrvjy.amplifyapp.com/
